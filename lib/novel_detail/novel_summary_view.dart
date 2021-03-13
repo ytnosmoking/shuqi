@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class NovelSummaryView extends StatelessWidget {
+  final String summary;
+  final bool isUnfold;
+  final VoidCallback onPressed;
+  NovelSummaryView(this.summary, this.isUnfold, this.onPressed);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        color: Colors.white,
+        padding: EdgeInsets.all(15),
+        child: Stack(
+          alignment: AlignmentDirectional.bottomEnd,
+          children: [
+            Text(
+              summary,
+              maxLines: isUnfold ? null : 3,
+              style: TextStyle(fontSize: 14),
+            ),
+            Image.asset('img/detail_fold_bg.png'),
+            Image.asset(isUnfold ? 'img/detail_up.png' : 'img/detail_down.png'),
+          ],
+        ),
+      ),
+    );
+  }
+}
